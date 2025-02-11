@@ -1,14 +1,17 @@
 ---
-title: Introducing flyctl - The Fly.io CLI
+title: flyctl - The Fly.io CLI
 layout: docs
-sitemap: false
 edit: false
 nav: flyctl
 ---
 
-The `flyctl` command is your primary way to interact with Fly.io.
+flyctl, the Fly.io CLI, is one of the primary ways to interact with the Fly.io platform. You'll use the `fly` command to create and deploy apps, manage Machines and volumes, configure networking, and more.
 
-If you are doing anything with Fly.io, you'll need it. We have [flyctl installation instructions](/docs/hands-on/install-flyctl/) to guide you through installing it on your system. There's also [flyctl and continuous integration](/docs/flyctl/integrating/) which covers environment variables, JSON and other automation related information about flyctl.
+First, [install flyctl](/docs/flyctl/install/).
+
+Also check out [flyctl and continuous integration](/docs/flyctl/integrating/) which covers environment variables, JSON and other automation related information about flyctl.
+
+The following list includes some important commands to get started.
 
 ## Using your Fly.io Account
 
@@ -26,7 +29,6 @@ If you are doing anything with Fly.io, you'll need it. We have [flyctl installat
 
 * Show App Logs: [fly logs](/docs/flyctl/logs/)
 * Show App Deployment Status: [fly status](/docs/flyctl/status/)
-* Show App History: [fly history](/docs/flyctl/history/)
 * Show App Releases: [fly releases](/docs/flyctl/releases/)
 
 ## Configuring networking and certificates

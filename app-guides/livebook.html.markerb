@@ -7,7 +7,7 @@ categories:
   - elixir
 ---
 
-In this guide we'll deploy [Livebook](https://livebook.dev/), the interactive Elixir notebook app, to a single Fly Machine using the [Fly Launch](/docs/apps/) approach. 
+In this guide we'll deploy [Livebook](https://livebook.dev+external), the interactive Elixir notebook app, to a single Fly Machine using the [Fly Launch](/docs/launch/) approach. 
 
 We'll give Livebook a 1GB [persistent volume](/docs/volumes/) on which to store notebooks and other data.
 
@@ -28,11 +28,11 @@ Prepare a directory for your Livebook app config and place a `fly.toml` file ins
 
 ```toml
 [build]
-  image = "ghcr.io/livebook-dev/livebook:0.11.3"
+  image = "ghcr.io/livebook-dev/livebook:0.13.0"
                                                # use a prebuilt Livebook Docker image
 
 [env]
-  ELIXIR_ERL_OPTIONS = "-proto_dist inet6_tcp" # enable ipv6 for Fly.io private networking
+  ERL_AFLAGS = "-proto_dist inet6_tcp"         # enable ipv6 for Fly.io private networking
   LIVEBOOK_DATA_PATH = "/data"                 # /data is the mount point of the persistent volume
   LIVEBOOK_HOME = "/data"
   LIVEBOOK_ROOT_PATH = "/data"
@@ -106,7 +106,7 @@ To use your Livebook, visit `https://<your-app-name>.fly.dev` in the browser, or
 
 You can test that your notebook was saved onto the persistent volume by running `fly apps restart` and clicking "Open" on the Livebook home page to find and open it from storage.
 
-## A note on `auto_stop_machines` and `auto_start_machines` settings
+## A note on auto start and stop settings
 
 The `auto_stop_machines` and `auto_start_machines` config options are set to `true` in the app config. The Fly proxy will shut down the Machine when there's nobody connected to it. Livebook does try to save even "unsaved notebooks," but principle you can lose data if it shuts down and you have not saved your work.
 

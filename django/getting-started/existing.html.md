@@ -25,7 +25,7 @@ Be sure to have generated an up-to-date `requirements.txt` file for any new pack
 
 ## flyctl
 
-Fly.io has its own command-line utility for managing apps, [flyctl](https://fly.io/docs/hands-on/install-flyctl/). If not already installed, follow the instructions on the [installation guide](https://fly.io/docs/hands-on/install-flyctl/) and [log in to Fly](https://fly.io/docs/getting-started/log-in-to-fly/).
+Fly.io has its own command-line utility for managing apps, [flyctl](/docs/flyctl/). If not already installed, follow the instructions on the [installation guide](/docs/flyctl/install/) and [log in to Fly](/docs/getting-started/sign-up-sign-in/).
 
 
 ## Provision Django and Postgres Servers
@@ -165,7 +165,7 @@ fly ssh console --pty -C 'python /code/manage.py createsuperuser'
 
 ### Secrets
 
-Secrets allow sensitive values, such as credentials and API keys, to be securely passed to your Django applications. You can set, remove, or list all secrets with the [fly secrets](https://fly.io/docs/reference/secrets/) command.
+Secrets allow sensitive values, such as credentials and API keys, to be securely passed to your Django applications. You can set, remove, or list all secrets with the [fly secrets](/docs/apps/secrets/) command.
 
 ### Git
 

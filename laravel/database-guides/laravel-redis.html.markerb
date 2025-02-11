@@ -26,7 +26,7 @@ You can set up your own Redis Fly App either through Fly.io's Redis Docker Image
     - You can specify your region code through the `--region` attribute
     - You can opt not to immediately deploy by adding `--no-deploy` argument
     <br><br>
-2.  Afterwards, add a [volume](/docs/reference/volumes/) that will persist your Redis data
+2.  Afterwards, add a [volume](/docs/volumes/) that will persist your Redis data
 
     ```cmd
     fly volumes create redis_server --size 1
@@ -91,7 +91,7 @@ If you would like to use [Redis' official docker image](https://hub.docker.com/_
 
 Now that you have your Redis Fly App running, the next step is to connect it with your Laravel Fly App! Follow the steps below:
 
-1. First, retrieve your Redis Fly App's [Fly .internal Address](/docs/laravel/the-basics/databases/#fly-internal-address). 
+1. First, retrieve your Redis Fly App's [Fly .internal Address](/docs/networking/private-networking/#fly-io-internal-addresses). 
 
 2.  Next, make sure you move to your Laravel Fly App's directory for better navigation:
 
@@ -153,7 +153,7 @@ The simplest way to connect your local Laravel application to a Redis Fly App is
 
 ## _Laravel with Upstash Managed Redis Fly App_
 
-Want a fully-managed Redis Fly App? Try [Upstash Redis](https://upstash.com/)! To set up, you can follow our-in-depth guide [here](/docs/reference/redis/) 
+Want a fully-managed Redis Fly App? Try [Upstash Redis](https://upstash.com/)! To set up, you can follow our-in-depth guide [here](/docs/upstash/redis/) 
 
 Once you've configured the necessary details through the flyctl prompts, and the app deployment completes, you should get a summary of the Redis cluster you've just deployed, like so:
 ```output

@@ -21,7 +21,7 @@ git clone git@github.com:fly-apps/python_gpu_example.git && cd python_gpu_exampl
 
 ### Edit app configuration in `fly.toml`
 * Change `app` to match the name of the app you just created.
-* Optionally, `primary_region`&mdash;make sure to choose a region in which GPU Machines are available. Check the [docs](https://fly.io/docs/gpus/gpu-quickstart/) for GPU regions.
+* Optionally, `primary_region`&mdash;make sure to choose a [region in which GPU Machines are available](/docs/gpus/#regions-with-gpus).
 * Optionally, change the NONROOT_USER `build.arg`&mdash;if you do, also edit the `destination` of the volume mount in `mounts` to match.
 * Optionally, tweak `swap_size_mb`.
 
@@ -37,7 +37,11 @@ git clone git@github.com:fly-apps/python_gpu_example.git && cd python_gpu_exampl
 
 ### Jupyter notebook
 
-The easiest way to visit a private Fly App with the browser is with `fly proxy` command, which proxies a local port to a Machine.
+The easiest way to visit a private Fly App with the browser is with the `fly proxy` command, which proxies a local port to a Machine.
+
+```
+fly proxy 8888:8888
+```
 
 Run `fly logs` to find a line like 
 
@@ -85,7 +89,7 @@ We want to shut down GPU Machines when they're not needed, either manually with 
 The compromise we use here is to generate a sub-1GB Docker image and store the project's pip packages and any downloaded data on the Fly Volume. This keeps all pip dependencies together in one venv for easy coordination and flexibility. With a well-established workload, you might make a different calculation; maybe all the projects deps actually fit in a manageable Docker image, and you can dispense with the volume storage, or some packages can be installed system-wide with apt, leaving less to manage with pip.
 
 ### Compute
-The GPUs available at this time are `a100-sxm4-80gb` and `a100-pcie-40gb`, and you can use one GPU per Machine. We're not currently looking at model training on a massive scale; with careful design we can certainly do some reasonable inference on a single one of these cards. Here we're looking at running models manually so we'll stick with a single Machine, but an obvious use for Fly GPU Machines is as a "stateless" service for an app whose front end and any other components run on cheaper CPU-only Machines. This allows for independent horizontal scaling of front and back ends, as well as traffic-based capacity scaling by starting and stopping Machines.
+The GPUs available at this time are `a100-sxm4-80gb`, `a100-pcie-40gb` and `l40s`; you can use one GPU per Machine. We're not currently looking at model training on a massive scale; with careful design we can certainly do some reasonable inference on a single one of these cards. Here we're looking at running models manually so we'll stick with a single Machine, but an obvious use for Fly GPU Machines is as a "stateless" service for an app whose front end and any other components run on cheaper CPU-only Machines. This allows for independent horizontal scaling of front and back ends, as well as traffic-based capacity scaling by starting and stopping Machines.
 
 At this time, Fly GPU Machines are provisioned with the `performance-8x` CPU config and 32GB RAM by default. Playing very crudely with a language model, I found it easy to out-of-memory kill my Jupyter (Python) kernel with 32GB of RAM. If you need more RAM and fastest performance, scale up with `fly scale memory`, but losing work is annoying, so it's worth enabling swap.
 
